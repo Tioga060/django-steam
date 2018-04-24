@@ -14,7 +14,7 @@ class UserSteam(models.Model):
 
 @receiver(post_save, sender=UserOpenID, dispatch_uid="save_steam_player")
 def save_steam_player(sender, instance, **kwargs):
-    regex = r'http://steamcommunity.com/openid/id/(\w+)'
+    regex = "https?://steamcommunity.com/openid/id/(\w+)"
     match = re.findall(regex, instance.claimed_id)
     if len(match) > 0:
         steam_id = match[0]
